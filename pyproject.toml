@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "fastapi_test"
+version = "0.1.0"
+description = ""
+authors = ["josex2r <jlrepresa@gmail.com>"]
+
+[tool.poetry.scripts]
+start = "fastapi_test.main:run"
+
+[tool.poetry.dependencies]
+aiohttp = "*"
+fastapi = "*"
+pydantic = "*"
+python = "^3.10"
+uvicorn = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+debugpy = "*"
+uvicorn = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
