@@ -15,7 +15,7 @@ python = "^3.10"
 uvicorn = "*"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "*"
 debugpy = "*"
 uvicorn = "*"
 
