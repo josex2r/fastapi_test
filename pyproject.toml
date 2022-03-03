@@ -6,6 +6,7 @@ authors = ["josex2r <jlrepresa@gmail.com>"]
 
 [tool.poetry.scripts]
 start = "fastapi_test.main:run"
+# test:debug = "python -m debugpy --listen 5678 --wait-for-client -m fastapi_test.main"
 
 [tool.poetry.dependencies]
 aiohttp = "*"

@@ -1,4 +1,3 @@
-from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
 from dataclasses import asdict
 
