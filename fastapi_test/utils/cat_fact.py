@@ -1,5 +1,12 @@
 import aiohttp
+from typing import TypedDict
 from pydantic import BaseModel
+from .arequest import arequest
+
+
+class CatFactDict(TypedDict):
+    fact: str
+    length: int
 
 
 class CatFact(BaseModel):
@@ -8,7 +15,6 @@ class CatFact(BaseModel):
 
 
 async def get_cat_fact() -> CatFact:
-    async with aiohttp.ClientSession() as session:
-        async with session.get('https://catfact.ninja/fact') as response:
-            data = await response.json()
-            return CatFact(**data)
+    async with arequest[CatFactDict]("https://catfact.ninja/fact") as result:
+        response, data = result
+        return CatFact(**data)
