@@ -24,7 +24,11 @@ services:
     volumes:
       - .:/usr/src
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@postgres_fastapi/fastapi_test?schema=public
+      - INSTALL_DEV=true
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_SERVER=postgres_fastapi
+      - POSTGRES_DB=fastapi
 
   postgres_fastapi:
     container_name: postgres_fastapi
@@ -34,7 +38,7 @@ services:
       - PGPASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=fastapi_test
+      - POSTGRES_DB=fastapi
     volumes:
       - ./.database/postgres_fastapi:/data/db
     ports:
@@ -55,7 +59,7 @@ services:
     depends_on:
       - postgres_fastapi
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@postgres_fastapi/fastapi_test?schema=public
+      - INSTALL_DEV=false
 
 networks:
   fastapi-network:

@@ -3,7 +3,11 @@ from fastapi import FastAPI, Request
 from .routers.films import router as films_router
 from .routers.items import router as items_router
 from .routers.users import router as users_router
+
+from .db.init_db import init
 from .utils import cat_fact
+
+init()
 
 app = FastAPI()
 

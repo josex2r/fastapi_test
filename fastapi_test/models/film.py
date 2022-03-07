@@ -1,16 +1,13 @@
-from pydantic.dataclasses import dataclass
+from sqlalchemy import Column, Integer, String
+
+from ..db.base import Base
 
 
-@dataclass
-class Film:
-    title: str
-    year: int
-    rating: int
-
-    def __init__(self, title: str, year: int, rating: int):
-        self.title = title
-        self.year = year
-        self.rating = rating
+class Film(Base):
+    title = Column(String, unique=True, index=True)
+    description = Column(String, nullable=True)
+    year = Column(Integer)
+    rating = Column(Integer)
 
     def __str__(self):
         stars = "☆" * self.rating

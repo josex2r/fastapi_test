@@ -1,5 +1,6 @@
-from pydantic.dataclasses import dataclass
 from dataclasses import asdict
+
+from pydantic.dataclasses import dataclass
 
 
 @dataclass
@@ -15,7 +16,7 @@ class Address:
     city: str
     zipcode: str
     geo: LatLng
-    
+
     def to_json(self):
         return asdict(self)
 
@@ -25,7 +26,7 @@ class Company:
     name: str
     catchPhrase: str
     bs: str
-    
+
     def to_json(self):
         return asdict(self)
 
@@ -40,6 +41,6 @@ class User:
     website: str
     address: Address | None = None
     company: Company | None = None
-    
+
     def to_json(self):
         return asdict(self)
