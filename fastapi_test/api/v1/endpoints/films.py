@@ -68,12 +68,9 @@ async def update_film(
 async def delete_film(
     id: int,
     crud: CRUDFilm = Depends(get_films_crud),
-) -> Film:
+) -> Optional[Film]:
     """
     Delete a film.
     """
-    film = await crud.get(id=id)
-    if not film:
-        raise HTTPException(status_code=404, detail="film not found")
     film = await crud.remove(id=id)
     return film
