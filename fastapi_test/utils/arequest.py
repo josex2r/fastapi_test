@@ -1,10 +1,12 @@
-import aiohttp
 from typing import Generic, TypeVar
 
-ResponseType = TypeVar('ResponseType')
+import aiohttp
+
+ResponseType = TypeVar("ResponseType")
+
 
 class arequest(Generic[ResponseType]):
-    def __init__(self, url: str, *, method: str = 'get', **rest):
+    def __init__(self, url: str, *, method: str = "get", **rest):
         self.url = url
         self.rest = rest
         self.method = method
