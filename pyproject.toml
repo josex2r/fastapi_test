@@ -15,8 +15,8 @@ pydantic = "*"
 python = "^3.10"
 uvicorn = "*"
 SQLAlchemy = "^1.4.32"
-psycopg2-binary = "^2.9.3"
 SQLAlchemy-Utils = "^0.38.2"
+asyncpg = "^0.25.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"

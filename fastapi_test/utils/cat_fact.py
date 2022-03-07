@@ -1,6 +1,7 @@
-import aiohttp
 from typing import TypedDict
+
 from pydantic import BaseModel
+
 from .arequest import arequest
 
 

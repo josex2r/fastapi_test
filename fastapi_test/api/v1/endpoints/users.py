@@ -1,10 +1,9 @@
-import aiohttp
 from fastapi import APIRouter, HTTPException, status
 
-from ..models.user import User
-from ..utils.arequest import arequest
+from fastapi_test.models.user import User
+from fastapi_test.utils.arequest import arequest
 
-router = APIRouter(tags=["users"])
+router = APIRouter()
 
 
 @router.get("/", response_model=list[User])

@@ -1,33 +1,18 @@
 from fastapi import FastAPI, Request
 
-from .routers.films import router as films_router
-from .routers.items import router as items_router
-from .routers.users import router as users_router
-
-from .db.init_db import init
-from .utils import cat_fact
-
-init()
+from fastapi_test.api.v1.api import api_router
+from fastapi_test.db.init_db import init
+from fastapi_test.utils import cat_fact
 
 app = FastAPI()
 
-app.include_router(
-    router=films_router,
-    prefix="/films",
-    tags=["router"],
-)
 
-app.include_router(
-    router=items_router,
-    prefix="/items",
-    tags=["router"],
-)
+@app.on_event("startup")
+async def startup():
+    await init()
 
-app.include_router(
-    router=users_router,
-    prefix="/users",
-    tags=["router"],
-)
+
+app.include_router(api_router, prefix="/v1")
 
 
 @app.get("/")

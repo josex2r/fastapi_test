@@ -11,6 +11,8 @@ RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; els
 
 RUN wait-for postgres_fastapi:5432
 
+ENV PYTHONPATH=/fastapi_test
+
 WORKDIR /usr/src
 
 # ======== Production ======== #
@@ -27,6 +29,8 @@ RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; els
 
 COPY . .
 RUN poetry install --no-dev
+
+ENV PYTHONPATH=/fastapi_test
 
 EXPOSE 8000
 
