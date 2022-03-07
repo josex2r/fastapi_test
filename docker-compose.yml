@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  development:
+    container_name: fastapi_test-dev
+    build:
+      context: .
+      target: development
+    entrypoint: /bin/sh -xec
+    command:
+      - |
+        wait-for postgres_fastapi:5432
+        pip install poetry
+        poetry config virtualenvs.create false
+        poetry install
+        python -m debugpy --listen 0.0.0.0:5678 -m uvicorn fastapi_test.app:app --reload --host 0.0.0.0
+    ports:
+      - 8000:8000
+      - 5678:5678
+    networks:
+      - fastapi-network
+    depends_on:
+      - postgres_fastapi
+    volumes:
+      - .:/usr/src
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres_fastapi/fastapi_test?schema=public
+
+  postgres_fastapi:
+    container_name: postgres_fastapi
+    image: postgres:latest
+    environment:
+      - PGDATA=/data/db
+      - PGPASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=fastapi_test
+    volumes:
+      - ./.database/postgres_fastapi:/data/db
+    ports:
+      - 5432:5432
+    networks:
+      - fastapi-network
+    restart: always
+
+  production:
+    container_name: fastapi_test-prod
+    build:
+      context: .
+      target: production
+    ports:
+      - 8000:80
+    networks:
+      - fastapi-network
+    depends_on:
+      - postgres_fastapi
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres_fastapi/fastapi_test?schema=public
+
+networks:
+  fastapi-network:
+    driver: bridge
