@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from .endpoints import films, items, users
+from .endpoints import films, items, people, users
 
 api_router = APIRouter()
 
@@ -13,6 +13,12 @@ api_router.include_router(
 api_router.include_router(
     router=items.router,
     prefix="/items",
+    tags=["router"],
+)
+
+api_router.include_router(
+    router=people.router,
+    prefix="/people",
     tags=["router"],
 )
 

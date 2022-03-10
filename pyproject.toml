@@ -17,6 +17,7 @@ uvicorn = "*"
 SQLAlchemy = "^1.4.32"
 SQLAlchemy-Utils = "^0.38.2"
 asyncpg = "^0.25.0"
+python-multipart = "^0.0.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"

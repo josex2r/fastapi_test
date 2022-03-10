@@ -14,7 +14,6 @@ class FilmCreate(FilmBase):
     description: str
 
 
-# Properties to receive on item update
 class FilmUpdate(FilmBase):
     pass
 
