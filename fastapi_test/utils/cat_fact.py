@@ -2,7 +2,7 @@ from typing import TypedDict
 
 from pydantic import BaseModel
 
-from .arequest import arequest
+from fastapi_test.utils.arequest import arequest
 
 
 class CatFactDict(TypedDict):

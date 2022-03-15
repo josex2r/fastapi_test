@@ -12,14 +12,11 @@ class ThrottleWrapper:
 
     @property
     def has_timer(self):
-        return hasattr(self, '_timer') and self._timer is not None
+        return hasattr(self, "_timer") and self._timer is not None
 
     @property
     def timer_is_alive(self):
-        try:
-            return self._timer.is_alive()
-        except AttributeError:
-            return False
+        return self._timer and self._timer.is_alive()
 
     @property
     def is_running(self):
@@ -43,6 +40,7 @@ def throttle(milliseconds: int) -> Callable:
     """
     Decorator to throttle a function X milliseconds
     """
+
     def decorator(func: Callable) -> ThrottleWrapper:
         return ThrottleWrapper(func, milliseconds)
 

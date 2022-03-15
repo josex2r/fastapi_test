@@ -6,7 +6,7 @@ authors = ["josex2r <jlrepresa@gmail.com>"]
 
 [tool.poetry.scripts]
 start = "fastapi_test.main:run"
-# test:debug = "python -m debugpy --listen 5678 --wait-for-client -m fastapi_test.main"
+# start:debug = "python -m debugpy --listen 5678 --wait-for-client -m fastapi_test.main"
 
 [tool.poetry.dependencies]
 aiohttp = "*"
@@ -23,6 +23,9 @@ python-multipart = "^0.0.5"
 pytest = "*"
 debugpy = "*"
 uvicorn = "*"
+pytest-cov = "^3.0.0"
+pytest-asyncio = "^0.18.2"
+pytest-mock = "^3.7.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
