@@ -1,8 +1,5 @@
-from typing import Type
-
 import pytest
 from aiohttp import web, ClientResponse
-from pytest_mock import MockerFixture
 
 
 async def fake_request(request):

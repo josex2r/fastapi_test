@@ -20,7 +20,7 @@ class AsyncContextManagerMock(MagicMock):
 
 @pytest.fixture()
 def mock_arequest(mocker: MockerFixture) -> Type[AsyncContextManagerMock]:
-    arequest_mock = mocker.patch("fastapi_test.utils.arequest.arequest")
+    arequest_mock = mocker.patch("fastapi_test.utils.cat_fact.arequest")
     arequest_mock.__getitem__.return_value = AsyncContextManagerMock
 
     return arequest_mock.__getitem__.return_value
