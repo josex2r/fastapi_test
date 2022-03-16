@@ -26,6 +26,7 @@ uvicorn = "*"
 pytest-cov = "^3.0.0"
 pytest-asyncio = "^0.18.2"
 pytest-mock = "^3.7.0"
+pytest-aiohttp = "^1.0.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

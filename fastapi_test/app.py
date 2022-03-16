@@ -17,7 +17,6 @@ app.include_router(api_router, prefix="/v1")
 
 @app.get("/")
 def root(request: Request) -> dict[str, str]:
-    print(request.url)
     return {"message": "Hello World"}
 
 

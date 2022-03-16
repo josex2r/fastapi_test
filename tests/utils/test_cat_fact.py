@@ -8,13 +8,13 @@ from pytest_mock import MockerFixture
 class AsyncContextManagerMock(MagicMock):
     data: dict = {}
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> tuple[None, dict]:
         return None, self.data
 
-    async def __aexit__(self, *args):
+    async def __aexit__(self, *args) -> None:
         pass
 
 
