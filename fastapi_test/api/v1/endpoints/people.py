@@ -29,7 +29,7 @@ async def create_person(
     person: Person,
 ) -> Person:
     async with arequest[Person](
-        "https://jsonplaceholder.typicode.com/users", method="post", json=person.to_json()
+        "https://jsonplaceholder.typicode.com/users", method="post", json=person.dict()
     ) as result:
         response, data = result
         if response.status != status.HTTP_201_CREATED:

@@ -1,38 +1,29 @@
 from dataclasses import asdict
 
+from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
 
 
-@dataclass
-class LatLng:
+class LatLng(BaseModel):
     lat: str
     lng: str
 
 
-@dataclass
-class Address:
+class Address(BaseModel):
     street: str
     suite: str
     city: str
     zipcode: str
     geo: LatLng
 
-    def to_json(self):
-        return asdict(self)
 
-
-@dataclass
-class Company:
+class Company(BaseModel):
     name: str
     catchPhrase: str
     bs: str
 
-    def to_json(self):
-        return asdict(self)
 
-
-@dataclass
-class Person:
+class Person(BaseModel):
     id: int
     name: str
     username: str
@@ -41,6 +32,3 @@ class Person:
     website: str
     address: Address | None = None
     company: Company | None = None
-
-    def to_json(self):
-        return asdict(self)

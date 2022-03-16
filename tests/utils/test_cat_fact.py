@@ -1,21 +1,9 @@
 from typing import Type
-from unittest.mock import MagicMock
 
 import pytest
 from pytest_mock import MockerFixture
 
-
-class AsyncContextManagerMock(MagicMock):
-    data: dict = {}
-
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-
-    async def __aenter__(self) -> tuple[None, dict]:
-        return None, self.data
-
-    async def __aexit__(self, *args) -> None:
-        pass
+from ..conftest import AsyncContextManagerMock
 
 
 @pytest.fixture()
@@ -27,12 +15,9 @@ def mock_arequest(mocker: MockerFixture) -> Type[AsyncContextManagerMock]:
 
 
 async def test_return_types(mock_arequest) -> None:
-    from fastapi_test.utils.cat_fact import get_cat_fact, CatFact
+    from fastapi_test.utils.cat_fact import CatFact, get_cat_fact
 
-    mock_arequest.data = {
-        "fact": "cat fact",
-        "length": "3"
-    }
+    mock_arequest.data = {"fact": "cat fact", "length": "3"}
 
     result = await get_cat_fact()
 
@@ -44,14 +29,8 @@ async def test_return_types(mock_arequest) -> None:
 async def test_returns_request_data(mock_arequest) -> None:
     from fastapi_test.utils.cat_fact import get_cat_fact
 
-    mock_arequest.data = {
-        "fact": "cat fact",
-        "length": "3"
-    }
+    mock_arequest.data = {"fact": "cat fact", "length": "3"}
 
     result = await get_cat_fact()
 
-    assert result == {
-        "fact": "cat fact",
-        "length": 3
-    }
+    assert result == {"fact": "cat fact", "length": 3}

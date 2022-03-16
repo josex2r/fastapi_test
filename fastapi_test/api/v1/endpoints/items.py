@@ -10,7 +10,7 @@ async def read_item(item_id: int):
     return {"item_id": item_id}
 
 
-@router.post("")
+@router.post("/")
 async def create_item(item: Item):
     item_dict = item.dict()
 

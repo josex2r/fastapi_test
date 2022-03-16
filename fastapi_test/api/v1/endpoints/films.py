@@ -9,7 +9,7 @@ from fastapi_test.api.deps import get_films_crud
 router = APIRouter()
 
 
-@router.get("/", response_model=list[film_schema.Film])
+@router.get("", response_model=list[film_schema.Film])
 async def get_films(
     skip: int = 0,
     limit: int = 100,
