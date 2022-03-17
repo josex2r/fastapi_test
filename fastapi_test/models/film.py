@@ -17,4 +17,6 @@ class Film(Base):
         return self.__str__()
 
     def __eq__(self, other):
+        print(self)
+        print(other)
         return self.title == other.title and self.year == other.year and self

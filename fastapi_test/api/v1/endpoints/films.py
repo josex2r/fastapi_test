@@ -9,7 +9,7 @@ from fastapi_test.api.deps import get_films_crud
 router = APIRouter()
 
 
-@router.get("", response_model=list[film_schema.Film])
+@router.get("/", response_model=list[film_schema.Film])
 async def get_films(
     skip: int = 0,
     limit: int = 100,
@@ -59,7 +59,7 @@ async def update_film(
     """
     film = await crud.get(id=id)
     if not film:
-        raise HTTPException(status_code=404, detail="film not found")
+        raise HTTPException(status_code=404, detail="Film not found")
     film = await crud.update(obj_in=film_in, db_obj=film)
     return film
 

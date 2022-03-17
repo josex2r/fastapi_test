@@ -29,7 +29,7 @@ subject = Person(
 )
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_arequest(mocker: MockerFixture) -> Type[AsyncContextManagerMock]:
     arequest_mock = mocker.patch("fastapi_test.api.v1.endpoints.people.arequest")
     arequest_mock.__getitem__.return_value = AsyncContextManagerMock
