@@ -1,36 +1,30 @@
-# ======== Development ======== #
+FROM python:3.10-slim AS base
 
-FROM python:3.10 AS development
+WORKDIR /usr/src
 
-RUN apt-get -q update && apt-get -qy install netcat lsof
+COPY . .
+
+RUN apt-get -q update && apt-get -qy install netcat lsof curl
 RUN curl -o /usr/bin/wait-for https://raw.githubusercontent.com/eficode/wait-for/master/wait-for && chmod +x /usr/bin/wait-for
-
 RUN pip install poetry
 RUN poetry config virtualenvs.create false
-RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --no-dev ; fi"
 
-RUN wait-for postgres_fastapi:5432
+# ======== Development ======== #
+
+FROM base AS development
 
 ENV PYTHONPATH=/fastapi_test
 
-WORKDIR /usr/src
+RUN poetry install --no-root
 
 # ======== Production ======== #
 
 # Pull base image
-FROM python:3.10 AS production
-
-WORKDIR /usr/src
-
-# Install dependencies
-RUN pip install poetry
-RUN poetry config virtualenvs.create false
-RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --no-dev ; fi"
-
-COPY . .
-RUN poetry install --no-dev
+FROM base AS production
 
 ENV PYTHONPATH=/fastapi_test
+
+RUN poetry install --no-root --no-dev
 
 EXPOSE 8000
 

@@ -12,3 +12,21 @@ This is just a test project to learn [fastAPI](https://fastapi.tiangolo.com/) + 
 - [sqlAlchemy](https://www.sqlalchemy.org/)
 - [Docker](https://www.docker.com/) + [compose](https://docs.docker.com/compose/)
 - [pytest](https://docs.pytest.org/en/7.1.x/)
+
+## Run
+
+```bash
+# development
+docker-compose up development
+# app ready in http://localhost:8000
+
+# production (@TODO)
+docker-compose up production
+# app ready in http://localhost:80
+```
+
+## Test
+
+```bash
+pytest --cov=fastapi_test --cov-report=html -s tests
+```

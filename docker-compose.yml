@@ -10,9 +10,6 @@ services:
     command:
       - |
         wait-for postgres_fastapi:5432
-        pip install poetry
-        poetry config virtualenvs.create false
-        poetry install
         python -m debugpy --listen 0.0.0.0:5678 -m uvicorn fastapi_test.app:app --reload --host 0.0.0.0
     ports:
       - 8000:8000
